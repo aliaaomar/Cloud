@@ -1,0 +1,18 @@
+version: "3"
+services:
+  web:
+    build: ./Website
+    volumes:
+      - ./Website:/var/www/html
+    ports: 
+      - 8080:80
+    depends_on:
+      - db
+  db:
+    build: ./Database
+    container_name: database
+    volumes:
+      - ./Database/db:/var/lib/mysql
+    restart: always
+    ports:
+      - "3307:3306"
